@@ -1,6 +1,5 @@
 import { StyleSheet, Text, SafeAreaView, Image, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { Ionicons } from "@expo/vector-icons";
 
 import Button from "./components/ui/Button";
 
@@ -33,6 +32,14 @@ export default function App() {
         >
           <Text>Continue with Google</Text>
         </Button>
+        <Text style={[styles.mutedText, styles.mutedTextUnderlined]}>
+          More sign-in options
+        </Text>
+        <Text style={styles.mutedText}>
+          By continuing, you agree to Todoist's{" "}
+          <Text style={styles.mutedTextUnderlined}>Terms of Service </Text>
+          and <Text style={styles.mutedTextUnderlined}> Privacy Policy</Text>
+        </Text>
       </View>
     </SafeAreaView>
   );
@@ -45,7 +52,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginTop: 90,
     paddingHorizontal: 30,
-    marginBottom: 90,
+    marginBottom: 70,
     backgroundColor: "#fff",
   },
   logoImg: {
@@ -61,9 +68,18 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
   },
-  buttonContainer:{
-    gap: 8,
-    alignSelf:"stretch",
-    paddingHorizontal: 20
+  buttonContainer: {
+    gap: 12,
+    alignSelf: "stretch",
+    paddingHorizontal: 20,
+  },
+  mutedText: {
+    color:"#666",
+    fontSize: 12,
+    textAlign: "center",
+    marginTop: 1,
+  },
+  mutedTextUnderlined: {
+    textDecorationLine:'underline'
   },
 });
