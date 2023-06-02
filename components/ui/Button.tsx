@@ -15,11 +15,18 @@ export default function Button({
   iconName,
   children,
 }: propsType) {
+  const buttonContainerStyles =
+    variant === "outline"
+      ? styles.buttonContainerOutline
+      : styles.buttonContainer;
+  const buttonTextStyles =
+    variant === "outline" ? styles.buttonTextOutline : styles.buttonText;
+  const iconColor = variant === "outline" ? "black" : "white";
   return (
-    <View style={styles.buttonContainer}>
+    <View style={buttonContainerStyles}>
       <Pressable style={styles.pressableContainer} onPress={onPress}>
-        {iconName && <Ionicons name={iconName} size={18} color="white" />}
-        <Text style={styles.buttonText}>{children}</Text>
+        {iconName && <Ionicons name={iconName} size={18} color={iconColor} />}
+        <Text style={buttonTextStyles}>{children}</Text>
       </Pressable>
     </View>
   );
@@ -30,15 +37,25 @@ const styles = StyleSheet.create({
     backgroundColor: "#000000",
     borderRadius: 8,
   },
+  buttonContainerOutline: {
+    borderColor: "#000000",
+    borderWidth: 2,
+    borderRadius: 8,
+  },
   buttonText: {
     color: "#ffffff",
     fontSize: 16,
     fontWeight: "bold",
   },
+  buttonTextOutline: {
+    color: "#000000",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
   pressableContainer: {
     flexDirection: "row",
-    justifyContent:'center',
-    alignItems:"center",
+    justifyContent: "center",
+    alignItems: "center",
     padding: 12,
     gap: 5,
   },
