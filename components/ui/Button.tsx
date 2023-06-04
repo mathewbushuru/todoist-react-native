@@ -2,6 +2,8 @@ import { Pressable, StyleSheet, View, Text } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 
+import { Colors } from "../../constants/colors";
+
 interface propsType {
   variant?: "default" | "outline";
   onPress: () => void;
@@ -34,21 +36,21 @@ export default function Button({
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    backgroundColor: "#000000",
+    backgroundColor: Colors.black,
     borderRadius: 8,
   },
   buttonContainerOutline: {
-    borderColor: "#000000",
+    borderColor: Colors.black,
     borderWidth: 2,
     borderRadius: 8,
   },
   buttonText: {
-    color: "#ffffff",
+    color: Colors.background,
     fontSize: 16,
     fontWeight: "bold",
   },
   buttonTextOutline: {
-    color: "#000000",
+    color: Colors.black,
     fontSize: 16,
     fontWeight: "bold",
   },

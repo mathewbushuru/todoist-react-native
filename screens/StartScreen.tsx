@@ -1,9 +1,18 @@
 import React from "react";
-import { StyleSheet, Text, View, SafeAreaView, Image } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
+import { type NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import Button from "../components/ui/Button";
+import { type stackParamsList } from "../App";
+import { Colors } from "../constants/colors";
 
-export default function StartScreen({ navigation }: { navigation: any }) {
+type propTypes = NativeStackScreenProps<stackParamsList, "start">;
+
+export default function StartScreen({
+  navigation,
+}: {
+  navigation: propTypes["navigation"];
+}) {
   return (
     <View style={styles.screen}>
       <Image
@@ -57,7 +66,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingHorizontal: 30,
     paddingVertical: 70,
-    backgroundColor: "#fff",
+    backgroundColor: Colors.background,
   },
   logoImg: {
     width: 633 / 3.5,
@@ -78,7 +87,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   mutedText: {
-    color: "#666",
+    color: Colors.muted,
     fontSize: 12,
     textAlign: "center",
     marginTop: 1,

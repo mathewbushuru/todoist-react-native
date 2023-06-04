@@ -1,12 +1,15 @@
 import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Pressable } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 import StartScreen from "./screens/StartScreen";
 import HomeScreen from "./screens/HomeScreen";
 import InboxScreen from "./screens/InboxScreen";
 
-const Stack = createNativeStackNavigator();
+import Button from "./components/ui/Button";
+import { Colors } from "./constants/colors";
 
 export type stackParamsList = {
   start: undefined;
@@ -14,12 +17,21 @@ export type stackParamsList = {
   inbox: { userId: string };
 };
 
+const Stack = createNativeStackNavigator<stackParamsList>();
+
 export default function App() {
   return (
     <>
       <StatusBar style="auto" />
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="start">
+        <Stack.Navigator
+          initialRouteName="start"
+          screenOptions={{
+            headerStyle: { backgroundColor: Colors.primaryBackground },
+            headerTintColor: Colors.primaryForeground,
+            headerTitleStyle: { fontWeight: "bold" },
+          }}
+        >
           <Stack.Screen
             name="start"
             component={StartScreen}
@@ -28,7 +40,26 @@ export default function App() {
           <Stack.Screen
             name="home"
             component={HomeScreen}
-            options={{ title: "Welcome" }}
+            options={{
+              title: "Welcome",
+              headerRight: ({tintColor}) => {
+                return (
+                  <>
+                    <Pressable
+                      onPress={() => {
+                        console.log("TODO: open settings");
+                      }}
+                    >
+                      <Ionicons
+                        name="settings-outline"
+                        color={tintColor}
+                        size={22}
+                      />
+                    </Pressable>
+                  </>
+                );
+              },
+            }}
           />
           <Stack.Screen
             name="inbox"

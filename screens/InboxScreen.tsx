@@ -1,12 +1,23 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { StatusBar } from "expo-status-bar";
+import { type NativeStackScreenProps } from "@react-navigation/native-stack";
 
-export default function InboxScreen() {
+import { type stackParamsList } from "../App";
+
+type propTypes = NativeStackScreenProps<stackParamsList, "inbox">;
+
+export default function InboxScreen({ navigation, route }: propTypes) {
+  const { userId } = route.params;
   return (
-    <View>
-      <Text>InboxScreen</Text>
-    </View>
-  )
+    <>
+      <StatusBar style="light" />
+      <View>
+        <Text>InboxScreen</Text>
+        <Text> Welcome {userId}</Text>
+      </View>
+    </>
+  );
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { StatusBar } from "expo-status-bar";
 import { type NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import Button from "../components/ui/Button";
@@ -13,17 +14,20 @@ export default function HomeScreen({
   navigation: propTypes["navigation"];
 }) {
   return (
-    <View style={styles.rootContainer}>
-      <Text>HomeScreen</Text>
-      <Button
-        onPress={() => navigation.navigate("inbox", { userId: "sddsffd" })}
-      >
-        View tasks in inbox
-      </Button>
-      <Button variant="outline" onPress={() => navigation.navigate("start")}>
-        Back to start page
-      </Button>
-    </View>
+    <>
+      <StatusBar style="light" />
+      <View style={styles.rootContainer}>
+        <Text>HomeScreen</Text>
+        <Button
+          onPress={() => navigation.navigate("inbox", { userId: "Mathew" })}
+        >
+          View tasks in inbox
+        </Button>
+        <Button variant="outline" onPress={() => navigation.navigate("start")}>
+          Back to start page
+        </Button>
+      </View>
+    </>
   );
 }
 
