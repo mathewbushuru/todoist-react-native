@@ -1,85 +1,43 @@
-import { StyleSheet, Text, SafeAreaView, Image, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import Button from "./components/ui/Button";
+import StartScreen from "./screens/StartScreen";
+import HomeScreen from "./screens/HomeScreen";
+import InboxScreen from "./screens/InboxScreen";
+
+const Stack = createNativeStackNavigator();
+
+export type stackParamsList = {
+  start: undefined;
+  home: undefined;
+  inbox: { userId: string };
+};
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.screen}>
+    <>
       <StatusBar style="auto" />
-      <Image
-        source={require("./assets/imgs/logo.png")}
-        style={styles.logoImg}
-      />
-      <Image
-        source={require("./assets/imgs/start-image.webp")}
-        style={styles.startImg}
-      />
-      <Text style={styles.startText}>
-        Organize your work and life, finally.
-      </Text>
-      <View style={styles.buttonContainer}>
-        <Button
-          iconName="ios-logo-apple"
-          onPress={() => console.log("Sign up with Apple")}
-        >
-          Continue with Apple
-        </Button>
-        <Button
-          variant="outline"
-          iconName="ios-logo-google"
-          onPress={() => console.log("Sign up with Google")}
-        >
-          <Text>Continue with Google</Text>
-        </Button>
-        <Text style={[styles.mutedText, styles.mutedTextUnderlined]}>
-          More sign-in options
-        </Text>
-        <Text style={styles.mutedText}>
-          By continuing, you agree to Todoist's{" "}
-          <Text style={styles.mutedTextUnderlined}>Terms of Service </Text>
-          and <Text style={styles.mutedTextUnderlined}> Privacy Policy</Text>
-        </Text>
-      </View>
-    </SafeAreaView>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="start">
+          <Stack.Screen
+            name="start"
+            component={StartScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="home"
+            component={HomeScreen}
+            options={{ title: "Welcome" }}
+          />
+          <Stack.Screen
+            name="inbox"
+            component={InboxScreen}
+            options={{ title: "All tasks" }}
+            initialParams={{ userId: "some_dummy_id_for_now" }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginTop: 90,
-    paddingHorizontal: 30,
-    marginBottom: 70,
-    backgroundColor: "#fff",
-  },
-  logoImg: {
-    width: 633 / 3.5,
-    height: 172 / 3.5,
-  },
-  startImg: {
-    width: 1358 / 3.5,
-    height: 806 / 3.5,
-  },
-  startText: {
-    fontSize: 26,
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  buttonContainer: {
-    gap: 12,
-    alignSelf: "stretch",
-    paddingHorizontal: 20,
-  },
-  mutedText: {
-    color:"#666",
-    fontSize: 12,
-    textAlign: "center",
-    marginTop: 1,
-  },
-  mutedTextUnderlined: {
-    textDecorationLine:'underline'
-  },
-});
