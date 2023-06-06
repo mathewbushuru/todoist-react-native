@@ -31,7 +31,7 @@ export default function StartScreen({
           iconName="ios-logo-apple"
           onPress={() => {
             console.log("TODO: Sign up with Apple");
-            navigation.navigate("signupEmail");
+            navigation.navigate("signupModal");
           }}
         >
           Continue with Apple

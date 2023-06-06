@@ -1,24 +1,30 @@
-import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Pressable } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { StatusBar } from "expo-status-bar";
 
 import StartScreen from "./screens/StartScreen";
 import HomeScreen from "./screens/HomeScreen";
 import InboxScreen from "./screens/InboxScreen";
-import EmailScreen from "./screens/signup/EmailScreen";
+import SignupEmailScreen from "./screens/signup/EmailScreen";
+import SignupPasswordScreen from "./screens/signup/PasswordScreen";
 
+import SettingsIcon from "./components/SettingsIcon";
 import { Colors } from "./constants/colors";
 
 export type stackParamsList = {
   start: undefined;
   home: undefined;
   inbox: { userId: string };
+  signupModal: undefined;
+};
+
+export type signupModalParamsList = {
   signupEmail: undefined;
+  signupPassword: undefined;
 };
 
 const Stack = createNativeStackNavigator<stackParamsList>();
+const SignupModalStack = createNativeStackNavigator<signupModalParamsList>();
 
 export default function App() {
   return (
@@ -44,21 +50,7 @@ export default function App() {
             options={{
               title: "Welcome",
               headerRight: ({ tintColor }) => {
-                return (
-                  <>
-                    <Pressable
-                      onPress={() => {
-                        console.log("TODO: open settings");
-                      }}
-                    >
-                      <Ionicons
-                        name="settings-outline"
-                        color={tintColor}
-                        size={22}
-                      />
-                    </Pressable>
-                  </>
-                );
+                return <SettingsIcon tintColor={tintColor} />;
               },
             }}
           />
@@ -68,14 +60,30 @@ export default function App() {
             options={{ title: "All tasks" }}
             initialParams={{ userId: "some_dummy_id_for_now" }}
           />
-          {/* Sign up screens  */}
           <Stack.Screen
-            name="signupEmail"
-            component={EmailScreen}
+            name="signupModal"
+            component={SignupModalScreens}
             options={{ headerShown: false, presentation: "modal" }}
           />
         </Stack.Navigator>
       </NavigationContainer>
     </>
+  );
+}
+
+function SignupModalScreens() {
+  return (
+    <SignupModalStack.Navigator>
+      <SignupModalStack.Screen
+        name="signupEmail"
+        component={SignupEmailScreen}
+        options={{ headerShown: false }}
+      />
+      <SignupModalStack.Screen
+        name="signupPassword"
+        component={SignupPasswordScreen}
+        options={{ headerShown: false }}
+      />
+    </SignupModalStack.Navigator>
   );
 }

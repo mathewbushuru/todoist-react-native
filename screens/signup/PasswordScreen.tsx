@@ -2,16 +2,12 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
-import { type NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import Button from "../../components/ui/Button";
 import { Colors } from "../../constants/colors";
-import { type signupModalParamsList } from "../../App";
 
-type propTypes = NativeStackScreenProps<signupModalParamsList, "signupEmail">;
-
-export default function EmailScreen() {
-  const navigation: propTypes["navigation"] = useNavigation();
+export default function PasswordScreen() {
+  const navigation = useNavigation();
   const [email, onChangeEmail] = useState<string>("");
   return (
     <>
@@ -25,27 +21,30 @@ export default function EmailScreen() {
             navigation.goBack();
           }}
         >
-          Close
+          Go Back
         </Button>
-        <Text style={styles.title}>What's your email address?</Text>
+        <Text style={styles.title}>Sign Up</Text>
+        <Text style={styles.emailText}>
+          Using <Text style={styles.emailTextBold}>email@test.com</Text> to sign
+          up
+        </Text>
         <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>YOUR EMAIL</Text>
+          <Text style={styles.inputLabel}>YOUR PASSWORD</Text>
           <TextInput
             style={styles.input}
             onChangeText={onChangeEmail}
             value={email}
-            placeholder="Email"
-            keyboardType="email-address"
+            placeholder="Password"
+            keyboardType="visible-password"
             autoFocus={true}
           />
           <Button
             variant="primary"
             onPress={() => {
               console.log("TODO: validate email input");
-              navigation.navigate("signupPassword")
             }}
           >
-            Continue with email
+            Sign Up
           </Button>
         </View>
       </View>
@@ -67,10 +66,19 @@ const styles = StyleSheet.create({
     textAlign: "left",
     paddingHorizontal: 12,
   },
+  emailText: {
+    marginTop: 12,
+    paddingHorizontal: 12,
+    color: Colors.muted,
+    fontSize: 15,
+  },
+  emailTextBold:{
+    fontWeight:"bold"
+  },
   inputContainer: {
     gap: 4,
     paddingHorizontal: 12,
-    marginTop: 96,
+    marginTop: 84,
   },
   inputLabel: {
     color: Colors.muted,
