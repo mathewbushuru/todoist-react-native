@@ -7,14 +7,15 @@ import { Ionicons } from "@expo/vector-icons";
 import StartScreen from "./screens/StartScreen";
 import HomeScreen from "./screens/HomeScreen";
 import InboxScreen from "./screens/InboxScreen";
+import EmailScreen from "./screens/signup/EmailScreen";
 
-import Button from "./components/ui/Button";
 import { Colors } from "./constants/colors";
 
 export type stackParamsList = {
   start: undefined;
   home: undefined;
   inbox: { userId: string };
+  signupEmail: undefined;
 };
 
 const Stack = createNativeStackNavigator<stackParamsList>();
@@ -42,7 +43,7 @@ export default function App() {
             component={HomeScreen}
             options={{
               title: "Welcome",
-              headerRight: ({tintColor}) => {
+              headerRight: ({ tintColor }) => {
                 return (
                   <>
                     <Pressable
@@ -66,6 +67,12 @@ export default function App() {
             component={InboxScreen}
             options={{ title: "All tasks" }}
             initialParams={{ userId: "some_dummy_id_for_now" }}
+          />
+          {/* Sign up screens  */}
+          <Stack.Screen
+            name="signupEmail"
+            component={EmailScreen}
+            options={{ headerShown: false, presentation: "modal" }}
           />
         </Stack.Navigator>
       </NavigationContainer>
