@@ -13,6 +13,9 @@ import SignupPasswordScreen from "./screens/signup/PasswordScreen";
 import SignupSelectUseScreen from "./screens/signup/SelectUseScreen";
 import SignupSelectExperienceScreen from "./screens/signup/SelectExperience";
 import SignupProfileScreen from "./screens/signup/ProfileScreen";
+// Login screens imports
+import LoginEmailScreen from "./screens/login/EmailScreen";
+import LoginPasswordScreen from "./screens/login/PasswordScreen";
 
 // project imports
 import SettingsIcon from "./components/SettingsIcon";
@@ -23,6 +26,7 @@ export type stackParamsList = {
   home: undefined;
   inbox: { userId: string };
   signupModal: undefined;
+  loginModal: undefined;
 };
 
 export type signupModalParamsList = {
@@ -33,8 +37,14 @@ export type signupModalParamsList = {
   signupProfile: undefined;
 };
 
+export type loginModalParamsList = {
+  loginEmail: undefined;
+  loginPassword: undefined;
+};
+
 const Stack = createNativeStackNavigator<stackParamsList>();
 const SignupModalStack = createNativeStackNavigator<signupModalParamsList>();
+const LoginModalStack = createNativeStackNavigator<loginModalParamsList>();
 
 export default function App() {
   return (
@@ -75,6 +85,11 @@ export default function App() {
             component={SignupModalScreens}
             options={{ headerShown: false, presentation: "modal" }}
           />
+          <Stack.Screen
+            name="loginModal"
+            component={LoginModalScreens}
+            options={{ headerShown: false, presentation: "modal" }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>
@@ -105,5 +120,20 @@ function SignupModalScreens() {
         component={SignupProfileScreen}
       />
     </SignupModalStack.Navigator>
+  );
+}
+
+function LoginModalScreens() {
+  return (
+    <LoginModalStack.Navigator screenOptions={{ headerShown: false }}>
+      <LoginModalStack.Screen
+        name="loginEmail"
+        component={LoginEmailScreen}
+      />
+      <LoginModalStack.Screen
+        name="loginPassword"
+        component={LoginPasswordScreen}
+      /> 
+    </LoginModalStack.Navigator>
   );
 }

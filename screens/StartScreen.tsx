@@ -41,7 +41,7 @@ export default function StartScreen({
           iconName="ios-logo-google"
           onPress={() => {
             console.log("TODO: Sign up with Google");
-            navigation.navigate("home");
+            navigation.navigate("loginModal");
           }}
         >
           <Text>Continue with Google</Text>

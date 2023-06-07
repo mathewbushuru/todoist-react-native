@@ -6,53 +6,46 @@ import { type NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import Button from "../../components/ui/Button";
 import { Colors } from "../../constants/colors";
-import { signupModalParamsList } from "../../App";
+import { type loginModalParamsList } from "../../App";
 
-type propTypes = NativeStackScreenProps<signupModalParamsList, "signupEmail">;
+type propTypes = NativeStackScreenProps<loginModalParamsList, "loginEmail">;
 
-export default function PasswordScreen() {
+export default function LoginEmailScreen() {
   const navigation: propTypes["navigation"] = useNavigation();
-  const [password, onChangePassword] = useState<string>("");
+  const [email, onChangeEmail] = useState<string>("");
   return (
     <>
       <StatusBar style="light" />
       <View style={styles.container}>
         <Button
           variant="link"
-          iconName="chevron-back"
-          iconSize={22}
           containerStyles={styles.linkBtnContainer}
           textStyles={styles.linkBtnText}
           onPress={() => {
             navigation.goBack();
           }}
         >
-          Back
+          Close
         </Button>
-        <Text style={styles.title}>Sign Up</Text>
-        <Text style={styles.emailText}>
-          Using <Text style={styles.emailTextBold}>email@test.com</Text> to sign
-          up
-        </Text>
+        <Text style={styles.title}>What's your email address?</Text>
         <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>YOUR PASSWORD</Text>
+          <Text style={styles.inputLabel}>YOUR EMAIL</Text>
           <TextInput
             style={styles.input}
-            onChangeText={onChangePassword}
-            value={password}
-            placeholder="Password"
-            keyboardType="visible-password"
-            secureTextEntry={true}
+            onChangeText={onChangeEmail}
+            value={email}
+            placeholder="Email"
+            keyboardType="email-address"
             autoFocus={true}
           />
           <Button
             variant="primary"
             onPress={() => {
-              console.log("TODO: validate password input");
-              navigation.navigate("signupSelectUse");
+              console.log("TODO: validate email input");
+              navigation.navigate("loginPassword")
             }}
           >
-            Sign Up
+            Continue with email
           </Button>
         </View>
       </View>
@@ -74,19 +67,10 @@ const styles = StyleSheet.create({
     textAlign: "left",
     paddingHorizontal: 12,
   },
-  emailText: {
-    marginTop: 12,
-    paddingHorizontal: 12,
-    color: Colors.muted,
-    fontSize: 15,
-  },
-  emailTextBold: {
-    fontWeight: "bold",
-  },
   inputContainer: {
     gap: 4,
     paddingHorizontal: 12,
-    marginTop: 84,
+    marginTop: 96,
   },
   inputLabel: {
     color: Colors.muted,

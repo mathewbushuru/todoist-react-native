@@ -6,12 +6,17 @@ import { type NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import Button from "../../components/ui/Button";
 import { Colors } from "../../constants/colors";
-import { signupModalParamsList } from "../../App";
+import { type stackParamsList, type loginModalParamsList } from "../../App";
 
-type propTypes = NativeStackScreenProps<signupModalParamsList, "signupEmail">;
+type mainPropTypes = NativeStackScreenProps<stackParamsList, "loginModal">;
+type modalPropTypes = NativeStackScreenProps<
+  loginModalParamsList,
+  "loginPassword"
+>;
 
-export default function PasswordScreen() {
-  const navigation: propTypes["navigation"] = useNavigation();
+export default function LoginPasswordScreen() {
+  const modalNavigation: modalPropTypes["navigation"] = useNavigation();
+  const mainNavigation: mainPropTypes["navigation"] = useNavigation();
   const [password, onChangePassword] = useState<string>("");
   return (
     <>
@@ -24,15 +29,15 @@ export default function PasswordScreen() {
           containerStyles={styles.linkBtnContainer}
           textStyles={styles.linkBtnText}
           onPress={() => {
-            navigation.goBack();
+            modalNavigation.goBack();
           }}
         >
           Back
         </Button>
-        <Text style={styles.title}>Sign Up</Text>
+        <Text style={styles.title}>Log in with your password</Text>
         <Text style={styles.emailText}>
-          Using <Text style={styles.emailTextBold}>email@test.com</Text> to sign
-          up
+          Using <Text style={styles.emailTextBold}>email@test.com</Text> to log
+          in
         </Text>
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>YOUR PASSWORD</Text>
@@ -49,11 +54,13 @@ export default function PasswordScreen() {
             variant="primary"
             onPress={() => {
               console.log("TODO: validate password input");
-              navigation.navigate("signupSelectUse");
+              mainNavigation.getParent()?.goBack();
+              mainNavigation.navigate("home");
             }}
           >
-            Sign Up
+            Log in
           </Button>
+          <Text style={styles.forgotPasswordText}>Forgot your password</Text>
         </View>
       </View>
     </>
@@ -99,6 +106,12 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 16,
     backgroundColor: Colors.popoverBackground,
+  },
+  forgotPasswordText: {
+    color: Colors.muted,
+    marginTop: 8,
+    textAlign: "center",
+    textDecorationLine: "underline",
   },
   linkBtnContainer: {
     alignSelf: "flex-start",

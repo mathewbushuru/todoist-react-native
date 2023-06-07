@@ -4,7 +4,6 @@ import { StatusBar } from "expo-status-bar";
 import { useNavigation } from "@react-navigation/native";
 import { type NativeStackScreenProps } from "@react-navigation/native-stack";
 
-import RadioButton from "../../components/ui/RadioButton";
 import Button from "../../components/ui/Button";
 import { type stackParamsList, type signupModalParamsList } from "../../App";
 import { Colors } from "../../constants/colors";

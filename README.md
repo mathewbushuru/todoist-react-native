@@ -15,4 +15,6 @@ https://github.com/mathewbushuru/todoist-react-native/assets/29956810/24faf815-5
     <img src="./docs/screens/select-use.png" width="250px" alt="progress" />
     <img src="./docs/screens/select-exp.png" width="250px" alt="progress" />
     <img src="./docs/screens/signup-profile.png" width="250px" alt="progress" />
+    <img src="./docs/screens/login-email.png" width="250px" alt="progress" />
+    <img src="./docs/screens/login-password.png" width="250px" alt="progress" />
 </p>
