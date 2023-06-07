@@ -4,7 +4,7 @@ An iOS and Android app that connects to an Express API/ backend.
 
 ##### Progress So far
 
-
+https://github.com/mathewbushuru/todoist-react-native/assets/29956810/24faf815-5c21-452a-a380-a6e6fac3c80d
 
 ##### All Screens
 
@@ -16,5 +16,3 @@ An iOS and Android app that connects to an Express API/ backend.
     <img src="./docs/screens/select-exp.png" width="250px" alt="progress" />
     <img src="./docs/screens/signup-profile.png" width="250px" alt="progress" />
 </p>
-
-<!-- ![progress](./docs/progress.jpg) -->
