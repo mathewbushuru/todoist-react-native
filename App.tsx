@@ -8,6 +8,7 @@ import InboxScreen from "./screens/InboxScreen";
 import SignupEmailScreen from "./screens/signup/EmailScreen";
 import SignupPasswordScreen from "./screens/signup/PasswordScreen";
 import SignupSelectUseScreen from "./screens/signup/SelectUseScreen";
+import SignupSelectExperienceScreen from "./screens/signup/SelectExperience";
 
 import SettingsIcon from "./components/SettingsIcon";
 import { Colors } from "./constants/colors";
@@ -23,6 +24,7 @@ export type signupModalParamsList = {
   signupEmail: undefined;
   signupPassword: undefined;
   signupSelectUse: undefined;
+  signupSelectExperience: undefined;
 };
 
 const Stack = createNativeStackNavigator<stackParamsList>();
@@ -87,6 +89,10 @@ function SignupModalScreens() {
       <SignupModalStack.Screen
         name="signupSelectUse"
         component={SignupSelectUseScreen}
+      />
+      <SignupModalStack.Screen
+        name="signupSelectExperience"
+        component={SignupSelectExperienceScreen}
       />
     </SignupModalStack.Navigator>
   );

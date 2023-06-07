@@ -15,7 +15,7 @@ type modalPropTypes = NativeStackScreenProps<
   "signupSelectUse"
 >;
 
-export default function SelectUseScreen() {
+export default function SelectExperienceScreen() {
   const mainNavigation: mainPropTypes["navigation"] = useNavigation();
   const modalNavigation: modalPropTypes["navigation"] = useNavigation();
   return (
@@ -23,18 +23,26 @@ export default function SelectUseScreen() {
       <StatusBar style="light" />
       <View style={styles.container}>
         <View style={styles.topContainer}>
-          <Text style={styles.title}>How do you plan to use Todoist</Text>
-          <Text style={styles.instructionText}>Choose all that apply</Text>
-          <UseCard
-            selected={true}
-            description="Personal"
-            imgName="personal-use"
-          />
-          <UseCard selected={false} description="Work" imgName="work-use" />
+          <Text style={styles.title}>
+            How experienced are you with productivity apps?
+          </Text>
+          <Text style={styles.instructionText}>
+            Choose whichever applies most.
+          </Text>
           <UseCard
             selected={false}
-            description="Education"
-            imgName="education-use"
+            description="Beginner"
+            imgName="beginner-exp"
+          />
+          <UseCard
+            selected={false}
+            description="Intermediate"
+            imgName="intermediate-exp"
+          />
+          <UseCard
+            selected={false}
+            description="Productivity Pro"
+            imgName="pro-exp"
           />
         </View>
         <View style={styles.buttonContainer}>
@@ -82,21 +90,21 @@ function UseCard({
     <Pressable onPress={handlePress}>
       <View style={[styles.card, selectedCard && styles.cardSelected]}>
         <View style={styles.cardLeft}>
-          {imgName === "personal-use" && (
+          {imgName === "beginner-exp" && (
             <Image
-              source={require(`../../assets/imgs/personal-use.avif`)}
+              source={require(`../../assets/imgs/beginner-exp.webp`)}
               style={styles.useImage}
             />
           )}
-          {imgName === "work-use" && (
+          {imgName === "intermediate-exp" && (
             <Image
-              source={require(`../../assets/imgs/work-use.avif`)}
+              source={require(`../../assets/imgs/intermediate-exp.webp`)}
               style={styles.useImage}
             />
           )}
-          {imgName === "education-use" && (
+          {imgName === "pro-exp" && (
             <Image
-              source={require(`../../assets/imgs/education-use.webp`)}
+              source={require(`../../assets/imgs/pro-exp.avif`)}
               style={styles.useImage}
             />
           )}
@@ -121,11 +129,11 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   title: {
-    fontSize: 28,
+    fontSize: 27,
     fontWeight: "bold",
     textAlign: "left",
     paddingHorizontal: 12,
-    maxWidth: "75%",
+    maxWidth: "95%",
   },
   instructionText: {
     paddingHorizontal: 12,
