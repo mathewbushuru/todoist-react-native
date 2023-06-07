@@ -1,15 +1,20 @@
+// Third party library imports
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
 
+// General screens imports
 import StartScreen from "./screens/StartScreen";
 import HomeScreen from "./screens/HomeScreen";
 import InboxScreen from "./screens/InboxScreen";
+// Signup screens imports
 import SignupEmailScreen from "./screens/signup/EmailScreen";
 import SignupPasswordScreen from "./screens/signup/PasswordScreen";
 import SignupSelectUseScreen from "./screens/signup/SelectUseScreen";
 import SignupSelectExperienceScreen from "./screens/signup/SelectExperience";
+import SignupProfileScreen from "./screens/signup/ProfileScreen";
 
+// project imports
 import SettingsIcon from "./components/SettingsIcon";
 import { Colors } from "./constants/colors";
 
@@ -25,6 +30,7 @@ export type signupModalParamsList = {
   signupPassword: undefined;
   signupSelectUse: undefined;
   signupSelectExperience: undefined;
+  signupProfile: undefined;
 };
 
 const Stack = createNativeStackNavigator<stackParamsList>();
@@ -93,6 +99,10 @@ function SignupModalScreens() {
       <SignupModalStack.Screen
         name="signupSelectExperience"
         component={SignupSelectExperienceScreen}
+      />
+      <SignupModalStack.Screen
+        name="signupProfile"
+        component={SignupProfileScreen}
       />
     </SignupModalStack.Navigator>
   );

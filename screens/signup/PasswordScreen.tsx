@@ -19,13 +19,15 @@ export default function PasswordScreen() {
       <View style={styles.container}>
         <Button
           variant="link"
+          iconName="chevron-back"
+          iconSize={22}
           containerStyles={styles.linkBtnContainer}
           textStyles={styles.linkBtnText}
           onPress={() => {
             navigation.goBack();
           }}
         >
-          Go Back
+          Back
         </Button>
         <Text style={styles.title}>Sign Up</Text>
         <Text style={styles.emailText}>
@@ -40,6 +42,7 @@ export default function PasswordScreen() {
             value={password}
             placeholder="Password"
             keyboardType="visible-password"
+            secureTextEntry={false}
             autoFocus={true}
           />
           <Button

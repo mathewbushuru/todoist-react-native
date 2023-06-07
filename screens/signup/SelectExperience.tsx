@@ -49,8 +49,6 @@ export default function SelectExperienceScreen() {
           <Button
             variant="secondary"
             onPress={() => {
-              // navigation.popToTop();
-              // navigation.goBack();
               mainNavigation.getParent()?.goBack();
               mainNavigation.navigate("home");
             }}
@@ -61,7 +59,7 @@ export default function SelectExperienceScreen() {
           <Button
             variant="primary"
             onPress={() => {
-              modalNavigation.navigate("signupSelectExperience");
+              modalNavigation.navigate("signupProfile");
             }}
             containerStyles={styles.button}
           >

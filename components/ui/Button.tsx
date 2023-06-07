@@ -18,6 +18,7 @@ interface propsType {
   iconName?: keyof typeof Ionicons.glyphMap;
   containerStyles?: StyleProp<ViewStyle>;
   textStyles?: StyleProp<TextStyle>;
+  iconSize?: number;
   children: React.ReactNode;
 }
 
@@ -27,41 +28,47 @@ export default function Button({
   iconName,
   containerStyles = {},
   textStyles = {},
+  iconSize = 18,
   children,
 }: propsType) {
-  let buttonContainerStyles, buttonTextStyles;
+  let buttonContainerStyles, buttonTextStyles, iconColor;
 
   switch (variant) {
     case "outline":
       buttonContainerStyles = styles.buttonContainerOutline;
       buttonTextStyles = styles.buttonTextOutline;
+      iconColor = Colors.black;
       break;
 
     case "primary":
       buttonContainerStyles = styles.buttonContainerPrimary;
       buttonTextStyles = styles.buttonText;
+      iconColor = Colors.primaryForeground;
       break;
 
     case "secondary":
       buttonContainerStyles = styles.buttonContainerSecondary;
       buttonTextStyles = styles.buttonTextSecondary;
+      iconColor = Colors.black;
       break;
 
     case "link":
       buttonContainerStyles = styles.buttonContainerLink;
       buttonTextStyles = styles.buttonTextLink;
+      iconColor = Colors.primaryBackground;
       break;
 
     default:
       buttonContainerStyles = styles.buttonContainer;
       buttonTextStyles = styles.buttonText;
+      iconColor = Colors.background;
       break;
   }
-  const iconColor = variant === "outline" ? "black" : "white";
+
   return (
     <View style={[buttonContainerStyles, containerStyles]}>
       <Pressable style={styles.pressableContainer} onPress={onPress}>
-        {iconName && <Ionicons name={iconName} size={18} color={iconColor} />}
+        {iconName && <Ionicons name={iconName} size={iconSize} color={iconColor} />}
         <Text style={[buttonTextStyles, textStyles]}>{children}</Text>
       </Pressable>
     </View>
