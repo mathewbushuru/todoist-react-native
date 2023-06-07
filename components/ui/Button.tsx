@@ -5,7 +5,7 @@ import {
   Text,
   type StyleProp,
   type ViewStyle,
-  type TextStyle
+  type TextStyle,
 } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
@@ -13,7 +13,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "../../constants/colors";
 
 interface propsType {
-  variant?: "default" | "outline" | "primary" | "link";
+  variant?: "default" | "outline" | "primary" | "link" | "secondary";
   onPress: () => void;
   iconName?: keyof typeof Ionicons.glyphMap;
   containerStyles?: StyleProp<ViewStyle>;
@@ -40,6 +40,11 @@ export default function Button({
     case "primary":
       buttonContainerStyles = styles.buttonContainerPrimary;
       buttonTextStyles = styles.buttonText;
+      break;
+
+    case "secondary":
+      buttonContainerStyles = styles.buttonContainerSecondary;
+      buttonTextStyles = styles.buttonTextSecondary;
       break;
 
     case "link":
@@ -73,6 +78,10 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primaryBackground,
     borderRadius: 8,
   },
+  buttonContainerSecondary: {
+    backgroundColor: Colors.secondaryBackground,
+    borderRadius: 8,
+  },
   buttonContainerLink: {
     backgroundColor: "transparent",
     borderRadius: 8,
@@ -95,6 +104,11 @@ const styles = StyleSheet.create({
   },
   buttonTextLink: {
     color: Colors.primaryBackground,
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  buttonTextSecondary: {
+    color: Colors.popoverForeground,
     fontSize: 16,
     fontWeight: "bold",
   },

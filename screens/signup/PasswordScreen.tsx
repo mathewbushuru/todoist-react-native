@@ -2,13 +2,17 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
+import { type NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import Button from "../../components/ui/Button";
 import { Colors } from "../../constants/colors";
+import { signupModalParamsList } from "../../App";
+
+type propTypes = NativeStackScreenProps<signupModalParamsList, "signupEmail">;
 
 export default function PasswordScreen() {
-  const navigation = useNavigation();
-  const [email, onChangeEmail] = useState<string>("");
+  const navigation: propTypes["navigation"] = useNavigation();
+  const [password, onChangePassword] = useState<string>("");
   return (
     <>
       <StatusBar style="light" />
@@ -32,8 +36,8 @@ export default function PasswordScreen() {
           <Text style={styles.inputLabel}>YOUR PASSWORD</Text>
           <TextInput
             style={styles.input}
-            onChangeText={onChangeEmail}
-            value={email}
+            onChangeText={onChangePassword}
+            value={password}
             placeholder="Password"
             keyboardType="visible-password"
             autoFocus={true}
@@ -41,7 +45,8 @@ export default function PasswordScreen() {
           <Button
             variant="primary"
             onPress={() => {
-              console.log("TODO: validate email input");
+              console.log("TODO: validate password input");
+              navigation.navigate("signupSelectUse");
             }}
           >
             Sign Up
@@ -72,8 +77,8 @@ const styles = StyleSheet.create({
     color: Colors.muted,
     fontSize: 15,
   },
-  emailTextBold:{
-    fontWeight:"bold"
+  emailTextBold: {
+    fontWeight: "bold",
   },
   inputContainer: {
     gap: 4,
